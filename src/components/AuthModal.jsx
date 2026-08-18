@@ -7,13 +7,11 @@ import {
   Eye, 
   EyeOff, 
   ArrowRight, 
-  Sparkles, 
   CheckCircle2 
 } from 'lucide-react';
 
-
 export default function AuthModal({ isOpen, onClose }) {
-  const [mode, setMode] = useState('signin'); // 'signin' | 'signup'
+  const [mode, setMode] = useState('signin');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -35,16 +33,13 @@ export default function AuthModal({ isOpen, onClose }) {
       onClick={onClose}
       className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md animate-in fade-in duration-200"
     >
-      
-      {/* Modal Container */}
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl border border-sky-100 p-8 overflow-hidden text-left"
+        className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl border border-indigo-100 p-8 overflow-hidden text-left"
       >
-
         
-        {/* Top Decorative Sky Bar */}
-        <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-sky-500 via-sky-400 to-blue-600" />
+        {/* Top Decorative Bar */}
+        <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-indigo-600 via-violet-600 to-emerald-500" />
 
         {/* Close Button */}
         <button
@@ -57,8 +52,8 @@ export default function AuthModal({ isOpen, onClose }) {
 
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
-          <div className="flex items-center justify-center w-12 h-12 bg-sky-100 text-sky-600 rounded-2xl border border-sky-200 shadow-sm">
-            <Zap className="w-6 h-6" />
+          <div className="flex items-center justify-center w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl border border-indigo-200 shadow-sm">
+            <Zap className="w-6 h-6 fill-current" />
           </div>
           <div>
             <h3 className="text-xl font-extrabold text-slate-900 tracking-tight">
@@ -70,7 +65,7 @@ export default function AuthModal({ isOpen, onClose }) {
           </div>
         </div>
 
-        {/* Success Alert overlay if submitted */}
+        {/* Success Alert */}
         {submitted ? (
           <div className="p-6 bg-emerald-50 border border-emerald-200 rounded-2xl text-center my-6">
             <CheckCircle2 className="w-10 h-10 text-emerald-500 mx-auto mb-2 animate-bounce" />
@@ -95,7 +90,7 @@ export default function AuthModal({ isOpen, onClose }) {
               <button
                 type="button"
                 onClick={() => setSubmitted(true)}
-                className="flex items-center justify-center gap-2 px-4 py-2.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 rounded-xl text-xs font-bold shadow-xs transition-colors"
+                className="flex items-center justify-center gap-2 px-4 py-2.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 rounded-xl text-xs font-bold shadow-2xs transition-colors"
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24">
                   <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -107,7 +102,6 @@ export default function AuthModal({ isOpen, onClose }) {
               </button>
             </div>
 
-            {/* Divider */}
             <div className="relative flex items-center justify-center mb-6">
               <div className="w-full border-t border-slate-200" />
               <span className="absolute bg-white px-3 text-[11px] font-semibold text-slate-600 uppercase tracking-widest">
@@ -115,7 +109,6 @@ export default function AuthModal({ isOpen, onClose }) {
               </span>
             </div>
 
-            {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
@@ -129,7 +122,7 @@ export default function AuthModal({ isOpen, onClose }) {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="developer@company.com"
-                    className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-300 focus:border-sky-500 focus:bg-white rounded-xl text-sm font-medium outline-none transition-all"
+                    className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-300 focus:border-indigo-500 focus:bg-white rounded-xl text-sm font-medium outline-none transition-all"
                   />
                 </div>
               </div>
@@ -146,7 +139,7 @@ export default function AuthModal({ isOpen, onClose }) {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••••••"
-                    className="w-full pl-10 pr-10 py-2.5 bg-slate-50 border border-slate-300 focus:border-sky-500 focus:bg-white rounded-xl text-sm font-medium outline-none transition-all"
+                    className="w-full pl-10 pr-10 py-2.5 bg-slate-50 border border-slate-300 focus:border-indigo-500 focus:bg-white rounded-xl text-sm font-medium outline-none transition-all"
                   />
                   <button
                     type="button"
@@ -158,24 +151,22 @@ export default function AuthModal({ isOpen, onClose }) {
                 </div>
               </div>
 
-              {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full py-3.5 px-6 font-bold text-sm text-white bg-gradient-to-r from-sky-600 via-sky-500 to-blue-600 hover:from-sky-500 hover:to-blue-700 rounded-xl shadow-lg shadow-sky-500/25 transition-all interactive flex items-center justify-center gap-2 mt-2"
+                className="w-full py-3.5 px-6 font-bold text-sm text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-lg shadow-indigo-500/25 transition-all interactive flex items-center justify-center gap-2 mt-2"
               >
                 <span>{mode === 'signin' ? 'Sign In to Console' : 'Create Free Account'}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </form>
 
-            {/* Toggle Mode */}
             <div className="mt-6 pt-4 border-t border-slate-100 text-center">
               {mode === 'signin' ? (
                 <p className="text-xs text-slate-600">
                   Don't have an account?{' '}
                   <button
                     onClick={() => setMode('signup')}
-                    className="font-bold text-sky-600 hover:underline"
+                    className="font-bold text-indigo-600 hover:underline"
                   >
                     Sign up for free API key
                   </button>
@@ -185,7 +176,7 @@ export default function AuthModal({ isOpen, onClose }) {
                   Already have an account?{' '}
                   <button
                     onClick={() => setMode('signin')}
-                    className="font-bold text-sky-600 hover:underline"
+                    className="font-bold text-indigo-600 hover:underline"
                   >
                     Sign in to existing account
                   </button>
