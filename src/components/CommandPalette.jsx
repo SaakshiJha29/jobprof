@@ -60,8 +60,15 @@ export default function CommandPalette({ isOpen, onClose, onOpenAuth, onNavigate
   };
 
   return (
-    <div className="fixed inset-0 z-[10000] flex items-start justify-center pt-20 p-4 bg-slate-900/60 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl border border-sky-200 overflow-hidden text-left">
+    <div
+      onClick={onClose}
+      className="fixed inset-0 z-[10000] flex items-start justify-center pt-20 p-4 bg-slate-900/60 backdrop-blur-md animate-in fade-in duration-200"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl border border-sky-200 overflow-hidden text-left"
+      >
+
         
         {/* Search Header Input */}
         <div className="flex items-center gap-3 px-5 py-4 border-b border-slate-100">

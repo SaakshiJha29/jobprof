@@ -29,9 +29,19 @@ export default function ProxyMatrix() {
     const ctx = canvas.getContext('2d');
     let animationFrameId;
 
-    // Set canvas dimensions
-    const width = (canvas.width = canvas.offsetWidth);
-    const height = (canvas.height = canvas.offsetHeight);
+    // Set canvas dimensions with window resize handler
+    const updateSize = () => {
+      if (!canvas) return;
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    };
+
+    updateSize();
+    window.addEventListener('resize', updateSize);
+
+    const width = canvas.width;
+    const height = canvas.height;
+
 
     // Node definitions
     const numNodes = trafficMode === 'attack' ? 50 : trafficMode === 'spike' ? 35 : 25;
@@ -154,8 +164,12 @@ export default function ProxyMatrix() {
 
     render();
 
-    return () => cancelAnimationFrame(animationFrameId);
+    return () => {
+      window.removeEventListener('resize', updateSize);
+      cancelAnimationFrame(animationFrameId);
+    };
   }, [trafficMode, activeRegion]);
+
 
   const handleTrafficChange = (mode) => {
     setTrafficMode(mode);

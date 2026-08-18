@@ -31,10 +31,17 @@ export default function AuthModal({ isOpen, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md animate-in fade-in duration-200">
+    <div
+      onClick={onClose}
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md animate-in fade-in duration-200"
+    >
       
       {/* Modal Container */}
-      <div className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl border border-sky-100 p-8 overflow-hidden text-left">
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl border border-sky-100 p-8 overflow-hidden text-left"
+      >
+
         
         {/* Top Decorative Sky Bar */}
         <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-sky-500 via-sky-400 to-blue-600" />
