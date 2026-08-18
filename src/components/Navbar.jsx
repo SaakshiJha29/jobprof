@@ -10,10 +10,13 @@ import {
   X, 
   ShieldCheck, 
   Sparkles, 
-  ArrowRight 
+  ArrowRight,
+  Search,
+  Code2,
+  Calculator
 } from 'lucide-react';
 
-export default function Navbar({ onOpenAuth }) {
+export default function Navbar({ onOpenAuth, onOpenCmdPalette }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -30,10 +33,10 @@ export default function Navbar({ onOpenAuth }) {
   }, []);
 
   const navLinks = [
-    { name: 'Sandbox', href: '#sandbox', icon: Terminal },
-    { name: 'Edge Map', href: '#edge-map', icon: Globe2 },
-    { name: 'Features', href: '#features', icon: Cpu },
-    { name: 'Telemetry', href: '#telemetry', icon: ShieldCheck },
+    { name: '3D Mesh', href: '#proxy-matrix', icon: Globe2 },
+    { name: 'DOM Parser', href: '#dom-parser', icon: Code2 },
+    { name: 'SDKs', href: '#sdk-playground', icon: Cpu },
+    { name: 'ROI Calc', href: '#cost-calculator', icon: Calculator },
     { name: 'Pricing', href: '#pricing', icon: CreditCard },
   ];
 
@@ -47,6 +50,7 @@ export default function Navbar({ onOpenAuth }) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
+          
           {/* Logo & Brand */}
           <a href="#" className="flex items-center gap-3 group">
             <div className="relative">
@@ -55,55 +59,59 @@ export default function Navbar({ onOpenAuth }) {
                 <Zap className="w-5 h-5 text-sky-600 group-hover:scale-110 transition-transform duration-300" />
               </div>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col text-left">
               <div className="flex items-center gap-1.5">
                 <span className="text-xl font-extrabold tracking-tight text-slate-900">
                   Scrape<span className="text-sky-600">Pulse</span>
                 </span>
                 <span className="text-[10px] font-bold tracking-wider px-1.5 py-0.5 bg-sky-100 text-sky-700 border border-sky-200 rounded-full">
-                  v2.4
+                  v3.0 Bento
                 </span>
               </div>
               <span className="text-[10px] font-semibold text-slate-500 tracking-widest uppercase">
-                Job Telemetry Mesh
+                Enterprise Telemetry Engine
               </span>
             </div>
           </a>
 
-          {/* Desktop Nav Items - Highlighted Icon Pill Nav */}
-          <nav className="hidden md:flex items-center gap-2">
+          {/* Desktop Nav Items */}
+          <nav className="hidden lg:flex items-center gap-2">
             {navLinks.map((item) => {
               const Icon = item.icon;
               return (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="group flex items-center gap-2 px-3.5 py-2 text-xs font-bold text-sky-800 bg-sky-50/80 hover:bg-sky-100 border border-sky-200 hover:border-sky-300 rounded-xl transition-all duration-200 shadow-sm hover:shadow"
+                  className="group flex items-center gap-2 px-3 py-1.5 text-xs font-bold text-sky-800 bg-sky-50/70 hover:bg-sky-100 border border-sky-200 hover:border-sky-300 rounded-xl transition-all duration-200 shadow-2xs"
                 >
-                  <Icon className="w-4 h-4 text-sky-600 group-hover:scale-110 transition-transform duration-200" />
+                  <Icon className="w-3.5 h-3.5 text-sky-600 group-hover:scale-110 transition-transform duration-200" />
                   <span>{item.name}</span>
                 </a>
               );
             })}
           </nav>
 
-          {/* Right Action Buttons */}
+          {/* Command Palette Trigger & Actions */}
           <div className="hidden md:flex items-center gap-3">
-            {/* Live Operational Status Badge */}
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 border border-sky-200/80 rounded-full text-xs font-semibold text-slate-700 shadow-xs">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
-              <span className="text-[11px] text-slate-600">Nodes: <strong className="text-slate-900">42 Active</strong></span>
-            </div>
+            
+            {/* Quick Cmd + K Search Trigger */}
+            <button
+              onClick={onOpenCmdPalette}
+              className="flex items-center gap-3 px-3 py-1.5 bg-slate-100 hover:bg-slate-200/80 border border-slate-200 rounded-xl text-xs text-slate-600 transition-all font-medium interactive"
+            >
+              <Search className="w-3.5 h-3.5 text-slate-500" />
+              <span>Search features...</span>
+              <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-white border border-slate-300 rounded-md font-bold text-slate-700 shadow-2xs">
+                ⌘K
+              </kbd>
+            </button>
 
             {/* Quick Sign In Action Button */}
             <button
               onClick={onOpenAuth}
-              className="flex items-center gap-2 px-4 py-2 text-xs font-bold text-slate-800 bg-white hover:bg-sky-50 border border-slate-300 hover:border-sky-300 rounded-xl shadow-xs transition-all duration-200 interactive"
+              className="flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold text-slate-800 bg-white hover:bg-sky-50 border border-slate-300 hover:border-sky-300 rounded-xl shadow-2xs transition-all duration-200 interactive"
             >
-              <User className="w-4 h-4 text-slate-600" />
+              <User className="w-3.5 h-3.5 text-slate-600" />
               <span>Sign In</span>
             </button>
 
@@ -118,28 +126,29 @@ export default function Navbar({ onOpenAuth }) {
           </div>
 
           {/* Mobile Hamburger Toggle Button */}
-          <div className="flex md:hidden items-center gap-2">
+          <div className="flex lg:hidden items-center gap-2">
             <button
-              onClick={onOpenAuth}
+              onClick={onOpenCmdPalette}
               className="p-2 text-sky-700 bg-sky-50 border border-sky-200 rounded-lg"
-              title="Sign In"
+              title="Search Palette"
             >
-              <User className="w-5 h-5" />
+              <Search className="w-5 h-5" />
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-slate-700 hover:text-sky-600 bg-white border border-slate-200 rounded-xl shadow-xs"
+              className="p-2 text-slate-700 hover:text-sky-600 bg-white border border-slate-200 rounded-xl shadow-2xs"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
+
         </div>
       </div>
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white/98 border-b border-sky-100 shadow-xl px-4 pt-3 pb-6 animate-in slide-in-from-top duration-300">
+        <div className="lg:hidden bg-white/98 border-b border-sky-100 shadow-xl px-4 pt-3 pb-6 animate-in slide-in-from-top duration-300">
           <div className="flex flex-col gap-2">
             {navLinks.map((item) => {
               const Icon = item.icon;
@@ -166,17 +175,6 @@ export default function Navbar({ onOpenAuth }) {
               >
                 <User className="w-4 h-4 text-slate-600" />
                 <span>Account Sign In</span>
-              </button>
-
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenAuth();
-                }}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 text-sm font-bold text-white bg-gradient-to-r from-sky-600 to-blue-600 rounded-xl shadow-md shadow-sky-500/20"
-              >
-                <Sparkles className="w-4 h-4" />
-                <span>Get Enterprise API Keys</span>
               </button>
             </div>
           </div>
