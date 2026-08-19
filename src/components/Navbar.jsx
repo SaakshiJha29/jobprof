@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Zap, 
-  Terminal, 
   Globe2, 
   Cpu, 
   CreditCard, 
@@ -35,51 +34,51 @@ export default function Navbar({ onOpenAuth, onOpenCmdPalette }) {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full">
-      {/* Zero Gap Header Bar */}
+    <header className="sticky top-0 left-0 right-0 z-50 w-full m-0 p-0">
+      {/* Zero Gap Header Bar with Fixed 56px Height */}
       <div
-        className={`w-full transition-all duration-300 ${
+        className={`w-full transition-all duration-200 ${
           scrolled
-            ? 'bg-white/95 backdrop-blur-2xl border-b border-indigo-100/90 shadow-md shadow-indigo-500/5 py-3'
-            : 'bg-white/88 backdrop-blur-xl border-b border-indigo-100/60 shadow-xs py-3.5'
+            ? 'bg-white/95 backdrop-blur-2xl border-b border-indigo-100 shadow-sm'
+            : 'bg-white/90 backdrop-blur-xl border-b border-indigo-100/70 shadow-2xs'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
           
           {/* Left (Brand): Logo + Pulse Indicator */}
-          <a href="#" className="flex items-center gap-2.5 group">
-            <div className="relative flex items-center justify-center w-9 h-9 bg-indigo-600 text-white rounded-xl shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
-              <Zap className="w-5 h-5 fill-current text-white" />
-              <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+          <a href="#" className="flex items-center gap-2.5 group shrink-0">
+            <div className="relative flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-xl shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+              <Zap className="w-4.5 h-4.5 fill-current text-white" />
+              <span className="absolute -top-0.5 -right-0.5 flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
               </span>
             </div>
 
             <div className="flex flex-col text-left">
-              <div className="flex items-center gap-1.5">
-                <span className="text-lg font-extrabold tracking-tight text-slate-900">
+              <div className="flex items-center gap-1.5 leading-none">
+                <span className="text-base font-extrabold tracking-tight text-slate-900">
                   Scrape<span className="text-indigo-600">Pulse</span>
                 </span>
-                <span className="text-[10px] font-bold px-1.5 py-0.5 bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-md font-mono">
+                <span className="text-[9px] font-bold px-1.5 py-0.5 bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-md font-mono">
                   NEO
                 </span>
               </div>
-              <span className="text-[9px] font-semibold text-slate-500 tracking-wider uppercase">
+              <span className="text-[8.5px] font-semibold text-slate-500 tracking-wider uppercase mt-0.5">
                 Telemetry Mesh
               </span>
             </div>
           </a>
 
           {/* Center (Pill Nav Items) */}
-          <nav className="hidden lg:flex items-center gap-2">
+          <nav className="hidden lg:flex items-center gap-1.5">
             {navLinks.map((item) => {
               const IconComp = item.icon;
               return (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="group flex items-center gap-1.5 border border-indigo-100 bg-indigo-50/50 hover:bg-indigo-100/60 text-indigo-900 font-medium rounded-xl px-3 py-1.5 text-xs transition-all shadow-2xs"
+                  className="group flex items-center gap-1.5 border border-indigo-100/80 bg-indigo-50/50 hover:bg-indigo-100/60 text-indigo-950 font-semibold rounded-xl px-3 py-1.5 text-xs transition-all shadow-2xs"
                 >
                   <IconComp className="w-3.5 h-3.5 text-indigo-600 group-hover:scale-110 transition-transform" />
                   <span>{item.name}</span>
@@ -89,10 +88,10 @@ export default function Navbar({ onOpenAuth, onOpenCmdPalette }) {
           </nav>
 
           {/* Right (Actions): Cmd+K, Status Pill, Sign In */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-2.5 shrink-0">
             <button
               onClick={onOpenCmdPalette}
-              className="flex items-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200/80 border border-slate-200 rounded-xl text-xs text-slate-600 font-mono transition-all interactive"
+              className="flex items-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200/80 border border-slate-200/80 rounded-xl text-xs text-slate-600 font-mono transition-all interactive"
               title="Search Palette (Cmd + K)"
             >
               <Search className="w-3.5 h-3.5 text-slate-500" />
@@ -101,19 +100,19 @@ export default function Navbar({ onOpenAuth, onOpenCmdPalette }) {
               </kbd>
             </button>
 
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200/80 rounded-xl text-xs font-bold text-emerald-800 shadow-2xs font-mono">
+            <div className="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 border border-emerald-200/80 rounded-xl text-xs font-bold text-emerald-800 shadow-2xs font-mono">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
               </span>
-              <span>42 Nodes</span>
+              <span className="text-[11px]">42 Nodes</span>
             </div>
 
             <button
               onClick={onOpenAuth}
-              className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-md shadow-indigo-500/20 hover:shadow-indigo-500/35 px-4 py-2 transition-all interactive"
+              className="flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-md shadow-indigo-500/20 hover:shadow-indigo-500/35 px-3.5 py-1.5 transition-all interactive"
             >
-              <User className="w-4 h-4" />
+              <User className="w-3.5 h-3.5" />
               <span>Sign In</span>
             </button>
           </div>
@@ -122,14 +121,14 @@ export default function Navbar({ onOpenAuth, onOpenCmdPalette }) {
           <div className="flex lg:hidden items-center gap-2">
             <button
               onClick={onOpenCmdPalette}
-              className="p-2 text-indigo-700 bg-indigo-50 border border-indigo-200 rounded-xl"
+              className="p-1.5 text-indigo-700 bg-indigo-50 border border-indigo-200 rounded-lg"
               title="Search Palette"
             >
-              <Search className="w-4.5 h-4.5" />
+              <Search className="w-4 h-4" />
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-slate-700 hover:text-indigo-600 bg-white border border-slate-200 rounded-xl"
+              className="p-1.5 text-slate-700 hover:text-indigo-600 bg-white border border-slate-200 rounded-lg"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
